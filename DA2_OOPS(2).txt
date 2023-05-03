@@ -1,0 +1,41 @@
+Write a c program to find the number of  words,vowels, consonants, space and special characters in a string
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];
+    int words = 1, vowels = 0, consonants = 0, spaces = 0, special_chars = 0;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0'; 
+
+    for (int i = 0; i < strlen(str); i++) {
+        if (isspace(str[i])) {
+            words++;
+            spaces++;
+        }
+        else if (isalpha(str[i])) {
+            char c = tolower(str[i]);  // convert to lowercase for easier vowel checking
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                vowels++;
+            }
+            else {
+                consonants++;
+            }
+        }
+        else {
+            special_chars++;
+        }
+    }
+
+    printf("Words = %d\n", words);
+    printf("Vowels = %d\n", vowels);
+    printf("Consonants = %d\n", consonants);
+    printf("Spaces = %d\n", spaces);
+    printf("Special Characters = %d\n", special_chars);
+
+    return 0;
+}

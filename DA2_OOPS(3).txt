@@ -1,0 +1,59 @@
+Write a C program that accepts a string as input,print the length of the string and display the word fequency, then use pointers to find the first repeated and non-repeated character in the string, and print the output:
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LEN 100
+
+int main() {
+    char str[MAX_LEN];
+    int len, freq = 0;
+    char *first_repeated = NULL, *first_non_repeated = NULL;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n') {
+        str[--len] = '\0';  
+    }
+
+    printf("Length of the string is: %d\n", len);
+    for (int i = 0; i < len; i++) {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
+            continue;
+        }
+        freq++;
+    }
+    printf("Word frequency is: %d\n", freq);
+
+    for (int i = 0; i < len; i++) {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
+            continue;
+        }
+        char *p = strchr(str + i + 1, str[i]);
+        if (p != NULL && first_repeated == NULL) {
+            first_repeated = &str[i];
+        }
+        else if (p == NULL && first_non_repeated == NULL) {
+            first_non_repeated = &str[i];
+        }
+        if (first_repeated != NULL && first_non_repeated != NULL) {
+            break;
+        }
+    }
+
+    if (first_repeated == NULL) {
+        printf("No repeated characters found in the string.\n");
+    }
+    else {
+        printf("First repeated character is: %c\n", *first_repeated);
+    }
+    if (first_non_repeated == NULL) {
+        printf("No non-repeated characters found in the string.\n");
+    }
+    else {
+        printf("First non-repeated character is: %c\n", *first_non_repeated);
+    }
+
+    return 0;
+}
