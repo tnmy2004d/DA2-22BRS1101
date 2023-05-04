@@ -1,0 +1,48 @@
+The temperature in Chennai exists somewhere between 280C to 330C in a particular 
+week. The temperature in Delhi is 8
+0C lesser than in Chennai. Likewise, the 
+temperature in Haveri is 5
+0C more than that of Chennai. Write a C program to find the 
+temperature of Gangtok for a particular week, which is the temperature difference 
+between Delhi and Haveri. Get the temperature of Chennai (
+0C) as input for the week 
+of 7 days and the temperature of Gangtok (
+0C) as output for the week of 7 days. 
+Implement the program using arrays and validate the rules
+
+
+#include <stdio.h>
+
+int main() {
+    int chennai[7];
+    int delhi[7];
+    int haveri[7];
+    int gangtok[7];
+    int i;
+
+    printf("Enter temperature for Chennai for the week:\n");
+    for (i = 0; i < 7; i++) {
+        printf("Day %d: ", i + 1);
+        scanf("%d", &chennai[i]);
+        if (chennai[i] < 28 || chennai[i] > 33) {
+            printf("Temperature for Chennai should be between 28C and 33C\n");
+            return 1;
+        }
+    }
+    for (i = 0; i < 7; i++) {
+        delhi[i] = chennai[i] - 8;
+        haveri[i] = chennai[i] + 5;
+    }
+
+    for (i = 0; i < 7; i++) {
+        gangtok[i] = haveri[i] - delhi[i];
+    }
+
+    printf("Temperature for Gangtok for the week:\n");
+    for (i = 0; i < 7; i++) {
+        printf("Day %d: %dC\n", i + 1, gangtok[i]);
+    }
+
+    return 0;
+}
+
