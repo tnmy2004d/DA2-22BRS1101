@@ -1,0 +1,37 @@
+Write a C Program that reads the input as a string from the user in main (). (1 
+mark)
+The input should be a sentence with two words. Pass this string to a function.
+
+#include <stdio.h>
+#include <string.h>
+
+int func(char str[]) {
+    int var = 0;
+    str[0] = str[0] - 32;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ') {
+            i += 1;
+            var = 1;
+        }
+        if (var == 1) {
+            str[i] = str[i] - 32;
+        }
+    }
+    printf("\nRevised string is: %s", str);
+    int len = strlen(str);
+    printf("\nLength of the string: %d", len);
+    if (len < 20)
+        return len;
+    else
+        return len+1;
+}
+
+int main() {
+    char input_str[50];
+    printf("Enter the string: ");
+    scanf("%[^\n]s", input_str);
+    int res = func(input_str);
+    printf("\nResult: %d", res);
+    return 0;
+}
+

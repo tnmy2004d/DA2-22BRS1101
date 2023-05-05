@@ -1,0 +1,32 @@
+Write a c program to find the sum of the series 1!/1+2!/2+3!/3+4!/4+5!/5 ... n!/n by utilizing user defined recursive function? Get the value of n from the 
+user. Do not use any storage classes. Without returning the calculated result 
+from the function, display the result in main
+
+#include <stdio.h>
+
+double seriesSum(int n);
+
+int main() {
+    int n;
+    double sum;
+    
+    printf("Enter a value for n: ");
+    scanf("%d", &n);
+    
+    sum = seriesSum(n);
+    
+    printf("Sum of the series is: %.2f", sum);
+    
+    return 0;
+}
+
+double seriesSum(int n) {
+    if (n == 1) {
+        printf("1/1");
+        return 1.0;
+    } else {
+        double term = (double) 1 / n;
+        printf("%d/%d + ", n, n);
+        return term + seriesSum(n - 1);
+    }
+}

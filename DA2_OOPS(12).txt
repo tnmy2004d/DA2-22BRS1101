@@ -1,0 +1,44 @@
+Consider that you are going to analyze the characters in the given string. Write 
+a C program to extract the characters in the given string and print whether the 
+character is an uppercase alphabet, lowercase alphabet, digits, whitespace, 
+special symbols. Print the count of each category by storing their counts in an 
+array. Use appropriate looping constructs to implement this.
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];
+    int counts[5] = {0, 0, 0, 0, 0};
+    
+    printf("Enter a string: ");
+    fgets(str, 100, stdin);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (isupper(str[i])) {
+            counts[0]++;
+            printf("%c is an uppercase alphabet.\n", str[i]);
+        } else if (islower(str[i])) {
+            counts[1]++;
+            printf("%c is a lowercase alphabet.\n", str[i]);
+        } else if (isdigit(str[i])) {
+            counts[2]++;
+            printf("%c is a digit.\n", str[i]);
+        } else if (isspace(str[i])) {
+            counts[3]++;
+            printf("%c is a whitespace.\n", str[i]);
+        } else {
+            counts[4]++;
+            printf("%c is a special symbol.\n", str[i]);
+        }
+    }
+    
+    printf("Counts:\n");
+    printf("Uppercase alphabets: %d\n", counts[0]);
+    printf("Lowercase alphabets: %d\n", counts[1]);
+    printf("Digits: %d\n", counts[2]);
+    printf("Whitespaces: %d\n", counts[3]);
+    printf("Special symbols: %d\n", counts[4]);
+    
+    return 0;
+}
